@@ -113,7 +113,7 @@ const Paris = {
   minCus: 20,
   maxCus: 38,
   avgCookie: 2.3,
-
+  finalNumber: [],
   generateRandomNumber:function ( min, max ) {
     return ( ( Math.random() * ( max - min + 1 ) + min ) );
   },
