@@ -25,7 +25,7 @@ function tableHead (){
     th2Element.textContent= `${workingHours[i]}`;
   }
   const dailyTotal =document.createElement( 'th' );
-  tr1Element.appendChild( dailyTotal ).innerHTML= 'Daily total sales';
+  tr1Element.appendChild( dailyTotal ).innerHTML= 'Total of total sales';
 
 }
 function Market ( location, minCus, maxCus, avgCookie ){
