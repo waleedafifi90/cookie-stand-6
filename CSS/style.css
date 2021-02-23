@@ -1,3 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(177, 172, 172);
+}
+body header h1 {
+  padding: 10px;
+  font-size: 40px;
+  width: 100%;
+  background-color: honeydew;
+  overflow: auto;
+}
 a:link, a:visited {
     background-color: #f44336;
     color: white;
@@ -11,4 +27,22 @@ a:link, a:visited {
     background-color: red;
   }
 
+ body main div img{
+  width: 200px;
+  height: 200px;
+  background-color: red;
+  position: relative;
  
+ }
+ body main section h1 {
+   font-size: 40px;
+   width: 10px 20;
+   margin: 20px 20px;
+ }
+
+ body main section ul li{
+  font-size: 25px;
+  width: 10px 20;
+  margin: 20px 20px;
+  color: rgb(19, 19, 83);
+ }
