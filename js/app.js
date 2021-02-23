@@ -6,7 +6,7 @@ function tableHead (){
   const parentElement = document.getElementById ( 'locationProfiles' );
   const articleElement = document.createElement( 'article' );
   parentElement.appendChild( articleElement );
-  
+
   articleElement.appendChild( tableElement );
 
   const theadElement =document.createElement( 'thead' );
@@ -26,19 +26,6 @@ function tableHead (){
   }
   const dailyTotal =document.createElement( 'th' );
   tr1Element.appendChild( dailyTotal ).innerHTML= 'Daily total sales';
-
-
-
-  const tFooter =document.createElement( 'tfoot' );
-  tableElement.appendChild( tFooter );
-
-  const talbelFoot = document.createElement( 'tr' );
-  tFooter.appendChild( talbelFoot );
-
-  const totalHeader = document.createElement( 'th' );
-  talbelFoot.appendChild( totalHeader ).innerHTML= 'Totals';
-
-
 
 }
 function Market ( location, minCus, maxCus, avgCookie ){
@@ -97,8 +84,27 @@ Market.prototype.render = function (){
 
 
 };
+function tablefoot (){
+  const tFooter =document.createElement( 'tfoot' );
+  tableElement.appendChild( tFooter );
 
-tableHead();
+  const talbelFoot = document.createElement( 'tr' );
+  tFooter.appendChild( talbelFoot );
+
+  const totalHeader = document.createElement( 'th' );
+  talbelFoot.appendChild( totalHeader ).innerHTML= 'Totals';
+
+  for( let i=0; i<workingHours.length; i++ ){
+    const totfoHeader = document.createElement( 'td' );
+    talbelFoot.appendChild( totfoHeader );
+    totfoHeader.textContent = Seattle.cookiesSale[i] +Tokyo.cookiesSale[i]+Dubai.cookiesSale[i]+Paris.cookiesSale[i]+Lima.cookiesSale[i];
+
+  }
+  const totalOfTotals= document.createElement( 'td' );
+  talbelFoot.appendChild( totalOfTotals ).innerHTML= Math.ceil( Seattle.total+ Tokyo.total+Dubai.total+Paris.total+Lima.total );
+
+}
+
 const Seattle = new Market ( 'Steattle', 23, 65, 6.3 );
 Seattle.getCookiesale();
 Seattle.getCustomer();
@@ -123,3 +129,5 @@ const Lima = new Market ( 'Lima', 23, 65, 6.3 );
 Lima.getCookiesale();
 Lima.getCustomer();
 Lima.render();
+tableHead();
+tablefoot();
