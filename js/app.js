@@ -1,17 +1,19 @@
 'use strict';
 const workingHours = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
-
+const tableElement = document.createElement( 'table' );
 
 function tableHead (){
   const parentElement = document.getElementById ( 'locationProfiles' );
   const articleElement = document.createElement( 'article' );
   parentElement.appendChild( articleElement );
-  const tableElement = document.createElement( 'table' );
+  
   articleElement.appendChild( tableElement );
 
+  const theadElement =document.createElement( 'thead' );
+  tableElement.appendChild( theadElement );
 
   const tr1Element = document.createElement( 'tr' );
-  tableElement.appendChild( tr1Element );
+  theadElement.appendChild( tr1Element );
 
   const th1Element= document.createElement( 'th' );
   tr1Element.appendChild( th1Element );
@@ -22,6 +24,21 @@ function tableHead (){
     tr1Element.appendChild( th2Element );
     th2Element.textContent= `${workingHours[i]}`;
   }
+  const dailyTotal =document.createElement( 'th' );
+  tr1Element.appendChild( dailyTotal ).innerHTML= 'Daily total sales';
+
+
+
+  const tFooter =document.createElement( 'tfoot' );
+  tableElement.appendChild( tFooter );
+
+  const talbelFoot = document.createElement( 'tr' );
+  tFooter.appendChild( talbelFoot );
+
+  const totalHeader = document.createElement( 'th' );
+  talbelFoot.appendChild( totalHeader ).innerHTML= 'Totals';
+
+
 
 }
 function Market ( location, minCus, maxCus, avgCookie ){
@@ -56,27 +73,28 @@ Market.prototype.render = function (){
   // const tableElement = document.createElement( 'table' );
   // parentElement.appendChild( tableElement );
 
-  const parentElement = document.getElementById ( 'locationProfiles' );
-  const articleElement = document.createElement( 'article' );
-  parentElement.appendChild( articleElement );
-  const tableElement = document.createElement( 'table' );
-  articleElement.appendChild( tableElement );
+
+  const tbodyElement = document.createElement( 'tbody' );
+  tableElement.appendChild( tbodyElement );
 
   const tr1Element = document.createElement( 'tr' );
-  tableElement.appendChild( tr1Element );
+  tbodyElement.appendChild( tr1Element );
 
-  const clelement = document.createElement( 'td' );
+  const clelement = document.createElement( 'th' );
   tr1Element.appendChild( clelement );
   clelement.textContent = `${this.location}`;
+
 
   for( let i = 0; i < workingHours.length; i++ ) {
     const tdElement = document.createElement( 'td' );
     tr1Element.appendChild( tdElement );
     tdElement.textContent = `${this.cookiesSale[i]}`;
   }
-  const tableFooter = document.createElement( 'tfoot' );
+  const totalElement =document.createElement( 'td' );
+  tr1Element.appendChild( totalElement ).innerHTML= Math.ceil( this.total );
 
-  tableFooter.textContent = 'total';
+
+
 
 };
 
