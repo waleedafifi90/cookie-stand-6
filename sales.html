@@ -11,6 +11,27 @@
     </header>
     <main>
       <h2>Store Location: </h2>
+
+      <form id="addNewCookiesStorForm">
+        <fieldset>
+          <legend>Add new store</legend>
+          <label for="storName">Store Name</label>
+          <input type="text" id="storName" name="Store_name">
+  
+          <label for="minCus">Minmum cookie sale</label>
+          <input type="number" id="minCus" name="min_cookie" min="1">
+  
+          <label for="maxCus">maximum cookie sale</label>
+          <input type="number" id="maxCus" name="max_cookie">
+  
+          <label for="avgCookie">Average cookie sales</label>
+          <input type="number" id="avgCookie" name="cat_kids" step=".01">      
+          
+          <button type="submit">Save</button>
+        </fieldset>
+      </form>
+
+
       <div id="locationProfiles">
         
       </div>
