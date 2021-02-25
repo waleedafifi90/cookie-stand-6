@@ -9,11 +9,11 @@ function tableHead() {
 
   articleElement.appendChild( tableElement );
 
-  const theadElement = document.createElement( 'thead' );
-  tableElement.appendChild( theadElement );
+  // const theadElement = document.createElement( 'thead' );
+  // tableElement.appendChild( theadElement );
 
   const tr1Element = document.createElement( 'tr' );
-  theadElement.appendChild( tr1Element );
+  tableElement.appendChild( tr1Element );
 
   const th1Element = document.createElement( 'th' );
   tr1Element.appendChild( th1Element );
@@ -28,6 +28,8 @@ function tableHead() {
   tr1Element.appendChild( dailyTotal ).innerHTML = 'Total of total sales';
 
 }
+tableHead();
+
 function Market( location, minCus, maxCus, avgCookie ) {
   this.location = location;
   this.minCus = minCus;
@@ -63,11 +65,11 @@ Market.prototype.render = function () {
   // parentElement.appendChild( tableElement );
 
 
-  const tbodyElement = document.createElement( 'tbody' );
-  tableElement.appendChild( tbodyElement );
+  // const tbodyElement = document.createElement( 'tbody' );
+  // tableElement.appendChild( tbodyElement );
 
   const tr1Element = document.createElement( 'tr' );
-  tbodyElement.appendChild( tr1Element );
+  tableElement.appendChild( tr1Element );
 
   const clelement = document.createElement( 'th' );
   tr1Element.appendChild( clelement );
@@ -87,11 +89,11 @@ Market.prototype.render = function () {
 
 };
 function tablefoot() {
-  const tFooter = document.createElement( 'tfoot' );
-  tableElement.appendChild( tFooter );
+  // const tFooter = document.createElement( 'tfoot' );
+  // tableElement.appendChild( tFooter );
 
   const talbelFoot = document.createElement( 'tr' );
-  tFooter.appendChild( talbelFoot );
+  tableElement.appendChild( talbelFoot );
 
   const totalHeader = document.createElement( 'th' );
   talbelFoot.appendChild( totalHeader ).innerHTML = 'Totals';
@@ -99,14 +101,26 @@ function tablefoot() {
   for ( let i = 0; i < workingHours.length; i++ ) {
     const totfoHeader = document.createElement( 'td' );
     talbelFoot.appendChild( totfoHeader );
-    totfoHeader.textContent = Seattle.cookiesSale[i] + Tokyo.cookiesSale[i] + Dubai.cookiesSale[i] + Paris.cookiesSale[i] + Lima.cookiesSale[i];
+
+    let totalCookies = 0;
+    for(let j = 0; j < Market.allMarkets.length; j++) {
+      totalCookies += Market.allMarkets[j].cookiesSale[i];
+    }
+
+    totfoHeader.textContent = totalCookies;
 
   }
 
 
 
   const totalOfTotals = document.createElement( 'td' );
-  talbelFoot.appendChild( totalOfTotals ).innerHTML = Math.floor( Seattle.total+ Tokyo.total + Dubai.total+ Paris.total +Lima.total );
+  let totalOfTotal = 0;
+  for(let j = 0; j < Market.allMarkets.length; j++) {
+    totalOfTotal += Market.allMarkets[j].total;
+  }
+
+
+  talbelFoot.appendChild( totalOfTotals ).textContent = Math.ceil(totalOfTotal);
 
 
 }
@@ -139,7 +153,6 @@ const Lima = new Market( 'Lima', 23, 65, 6.3 );
 Lima.getCookiesale();
 Lima.getCustomer();
 Lima.render();
-tableHead();
 tablefoot();
 
 
@@ -150,12 +163,17 @@ formElement.addEventListener( 'submit', function ( Tareq ) {
   const minCus = Tareq.target.minCus.value;
   const maxCus = Tareq.target.maxCus.value;
   const avgCookie = Tareq.target.avgCookie.value;
+
+  tableElement.removeChild(tableElement.lastChild);
+
   const Stor = new Market( storName, Number( minCus ), Number( maxCus ), Number( avgCookie ) );
 
   Stor.getCookiesale();
   Stor.getCustomer();
   Stor.render();
-  console.log( Market.allMarkets );
-  console.log( Market.allMarkets[0].total );
+
+  tablefoot();
+  // console.log( Market.allMarkets );
+  // console.log( Market.allMarkets[0].total );
 } );
 
